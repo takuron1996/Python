@@ -1,0 +1,18 @@
+version: '3' # docker-composeファイルの書式バージョン。最新の’３’を指定（2019/6/27現在）
+services:
+  jupyterNotebook:
+    image: jupyter/tensorflow-notebook:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8888"
+    volumes:
+      - ./app:/app
+    environment:
+      NB_UID: 1000
+      NB_GID: 100
+      GRANT_SUDO: "yes"
+    privileged: true
+    restart: unless-stopped
+    command: start.sh jupyter lab --NotebookApp.token=''
