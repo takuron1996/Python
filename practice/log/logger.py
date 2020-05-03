@@ -12,9 +12,9 @@ __date__ = '2020/04/24'
 
 class Logger:
     from os import getcwd
-    from os.path import join
+    from os.path import join, abspath, dirname
     
-    def __init__(self, name = 'console', conf_filename = join(getcwd(), 'conf', 'conf.yaml')):
+    def __init__(self, name = 'console', conf_filename = join(dirname(abspath(__file__)), 'conf', 'conf.yaml')):
         from logging import getLogger
         self._logger = getLogger(name)
         if conf_filename is not None:
@@ -41,7 +41,7 @@ class Logger:
 
 class ApplicationLogger(Logger):
     def __init__(self, conf_filename = None):
-        name='application'
+        name = 'application'
         if conf_filename is None:
             super(ApplicationLogger, self).__init__(name = name)
         else:
