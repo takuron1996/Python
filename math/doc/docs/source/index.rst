@@ -1,14 +1,13 @@
-.. math documentation master file, created by
-   sphinx-quickstart on Sat Jun  5 11:48:55 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. Pythonで学び直す高校数学
 
-Welcome to math's documentation!
+Pythonで学び直す高校数学
 ================================
 
 .. toctree::
+   :numbered:
    :maxdepth: 2
-   :caption: Contents:
+
+   /first/index
 
 
 
