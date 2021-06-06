@@ -56,31 +56,69 @@ pythonの標準ライブラリ
 .. code-block:: python
 
    # 10進数 →　2進数   
+   26
    26 / 2 = 13 ・・・ 0
    13 / 2 = 6 ・・・ 1 
    6 / 2 = 3 ・・・ 0  
    3 / 2 = 1 ・・・ 1  
-   1 / 2 = 0 ・・・ 1   
+   1 / 2 = 0 ・・・ 1  
    11010
 
-   # 10進数　→　8進数   
-   26 / 8 = 3 ・・・ 2  
-   3 / 8 = 0 ・・・ 3   
+   26.625
+   26 / 2 = 13 ・・・ 0
+   13 / 2 = 6 ・・・ 1 
+   6 / 2 = 3 ・・・ 0  
+   3 / 2 = 1 ・・・ 1  
+   1 / 2 = 0 ・・・ 1  
+   0.625 * 2 = 1.25    
+   0.25 * 2 = 0.5
+   0.5 * 2 = 1.0
+   11010.101
+
+   # 10進数　→　8進数
+   26
+   26 / 8 = 3 ・・・ 2
+   3 / 8 = 0 ・・・ 3
    32
 
-   # 10進数　→　16進数  
+   26.625
+   26 / 8 = 3 ・・・ 2
+   3 / 8 = 0 ・・・ 3
+   0.625 * 8 = 5.0
+   32.5
+
+   # 10進数　→　16進数
+   26
    26 / 16 = 1 ・・・ 10
-   1 / 16 = 0 ・・・ 1  
+   1 / 16 = 0 ・・・ 1
    1A
 
-   # 2進数 →　10進数    
+   26.625
+   26 / 16 = 1 ・・・ 10
+   1 / 16 = 0 ・・・ 1
+   0.625 * 16 = 10.0
+   1A.A
+
+   # 2進数 →　10進数
+   11010
    (1*2**4) + (1*2**3) + (0*2**2) + (1*2**1) + (0*2**0) = 26
 
+   11010.101
+   (1*2**4) + (1*2**3) + (0*2**2) + (1*2**1) + (0*2**0) + (1*2**-1) + (0*2**-2) + (1*2**-3) = 26.625
+
    # 8進数 →　10進数
+   32
    (3*8**1) + (2*8**0) = 26
 
+   32.5
+   (3*8**1) + (2*8**0) + (5*8**-1) = 26.625
+
    # 16進数 →　10進数
+   1A
    (1*16**1) + (10*16**0) = 26
+
+   1A.A
+   (1*16**1) + (10*16**0) + (10*16**-1) = 26.625
 
 python
 
@@ -94,11 +132,14 @@ python
    """
    
    __author__ = 'Taku Ikegami'
-   __version__ = '2.0.2'
+   __version__ = '3.0.1'
    __date__ = '2021/06/06 (Created: 2021/06/05)'
    
+   from math import modf
+   from os import linesep
    
-   def radix_conversion_to_dec(target, base_number = 2):
+   
+   def radix_conversion_to_dec(target, base_number=2):
        """n進数から10進数に変換（2から16進数まで）
    
        Args:
@@ -106,45 +147,60 @@ python
            base_number (int): 変換元の進数（指定がない場合は2進数、2から16進数）
    
        """
-       def convert(target):
-           """数字をアルファベットに変換
+       def pre_calculation(result_list, formula_list):
+           """計算準備
            """
+           def convert(target):
+               """数字をアルファベットに変換
+               """
    
-           if str.isdigit(target):
-               return target
+               if str.isdigit(target):
+                   return target
    
-           return ord(target) - ord('A') + 10
+               return ord(target) - ord('A') + 10
+   
+           def calculation(number, start, stop):
+               """計算
+               """
+               for real, index in zip(number[::-1], range(start, stop)):
+                   convert_number = convert(real)
+                   result_list.append(
+                       int(convert_number) * base_number**int(index))
+                   formula_list.append('({}*{}**{})'.format(
+                       convert_number, base_number, index))
+               return
+   
+           return calculation
    
        if base_number > 16 or base_number < 2:
            print("2から16進数を指定してください")
            return
    
-       result_list = []
-       formula_list = []
-       for number, index in zip(target[::-1], range(0, len(target))):
-           convert_number = convert(number)
-           result_list.append(int(convert_number) * base_number**int(index))
-           formula_list.append('({}*{}**{})'.format(convert_number, base_number,
-                                                    index))
+       print(target)
    
+       target_list = target.split('.')
+       int_number = target_list[0]
+       real_number = ''
+       if len(target_list) == 2:
+           real_number = target_list[1]
+   
+       result_list, formula_list = ([], [])
+       calculation = pre_calculation(result_list, formula_list)
+       calculation(real_number, -len(real_number), 0)
+       calculation(int_number, 0, len(int_number))
        result = sum(result_list)
-       print('{} = {}'.format(' + '.join(formula_list[::-1]), str(result)))
+       print('{} = {}'.format(' + '.join(formula_list[::-1]), str(result)) +
+             linesep)
    
    
    def radix_conversion_from_dec(dividend, base_number=2):
        """10進数からn進数に変換（2から16進数まで）
    
        Args:
-           dividend (int): 基数変換する対象
+           dividend (float): 基数変換する対象
            base_number (int): 変換先の進数（指定がない場合は2進数、2から16進数）
    
        """
-       def print_formula(dividend, base_number, quotient, remainder):
-           """ 途中式の出力
-           """
-           template = "{} / {} = {} ・・・ {}"
-           print(template.format(dividend, base_number, quotient, remainder))
-   
        def convert(number):
            """10以上の数字をアルファベットに変換
            """
@@ -153,18 +209,50 @@ python
    
            return chr(ord('A') + number - 10)
    
+       def int_calculation(dividend):
+           """整数部分を計算
+           """
+           result_list = []
+           while dividend != 0:
+               quotient, remainder = divmod(dividend, base_number)
+               print("{} / {} = {} ・・・ {}".format(dividend, base_number, quotient,
+                                                  remainder))
+               result_list.append(convert(remainder))
+               dividend = quotient
+           return result_list
+   
+       def real_calculation(real_number):
+           """小数部分を計算
+           """
+           result_list = []
+           count = 0
+           while real_number != 0 and count < 10:
+               result = real_number * base_number
+               print("{} * {} = {}".format(real_number, base_number, result))
+               result_list.append(convert(int(result)))
+               real_number = result - int(result)
+               count += 1
+           return result_list
+   
        if base_number > 16 or base_number < 2:
            print("2から16進数を指定してください")
            return
    
-       result_list = []
+       print(dividend)
    
-       while dividend != 0:
-           quotient, remainder = divmod(dividend, base_number)
-           print_formula(dividend, base_number, quotient, remainder)
-           result_list.append(convert(remainder))
-           dividend = quotient
-       print("".join(map(str, result_list[::-1])))
+       real_number, int_number = modf(dividend)
+       int_number = int(int_number)
+   
+       int_list = int_calculation(int_number)
+       real_list = real_calculation(real_number)
+   
+       template_method = (
+           lambda number_list: "".join(map(str, number_list[::-1])))
+       int_str = template_method(int_list)
+       real_str = template_method(real_list)
+       template = "{}".format(int_str) if len(real_str) == 0 else "{}.{}".format(
+           int_str, real_str)
+       print(template + linesep)
    
    
    def main():
@@ -173,19 +261,25 @@ python
        """
        print('# 10進数 →　2進数')
        radix_conversion_from_dec(26, 2)
+       radix_conversion_from_dec(26.625, 2)
        print('# 10進数　→　8進数')
        radix_conversion_from_dec(26, 8)
+       radix_conversion_from_dec(26.625, 8)
        print('# 10進数　→　16進数')
        radix_conversion_from_dec(26, 16)
+       radix_conversion_from_dec(26.625, 16)
    
        print('# 2進数 →　10進数')
        radix_conversion_to_dec('11010', 2)
+       radix_conversion_to_dec('11010.101', 2)
        print('# 8進数 →　10進数')
        radix_conversion_to_dec('32', 8)
+       radix_conversion_to_dec('32.5', 8)
        print('# 16進数 →　10進数')
        radix_conversion_to_dec('1A', 16)
+       radix_conversion_to_dec('1A.A', 16)
    
    
    if __name__ == "__main__":
        main()
-   
+     

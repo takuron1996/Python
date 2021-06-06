@@ -9,6 +9,7 @@ __version__ = '3.0.1'
 __date__ = '2021/06/06 (Created: 2021/06/05)'
 
 from math import modf
+from os import linesep
 
 
 def radix_conversion_to_dec(target, base_number=2):
@@ -48,6 +49,8 @@ def radix_conversion_to_dec(target, base_number=2):
         print("2から16進数を指定してください")
         return
 
+    print(target)
+
     target_list = target.split('.')
     int_number = target_list[0]
     real_number = ''
@@ -59,7 +62,8 @@ def radix_conversion_to_dec(target, base_number=2):
     calculation(real_number, -len(real_number), 0)
     calculation(int_number, 0, len(int_number))
     result = sum(result_list)
-    print('{} = {}'.format(' + '.join(formula_list[::-1]), str(result)))
+    print('{} = {}'.format(' + '.join(formula_list[::-1]), str(result)) +
+          linesep)
 
 
 def radix_conversion_from_dec(dividend, base_number=2):
@@ -107,6 +111,8 @@ def radix_conversion_from_dec(dividend, base_number=2):
         print("2から16進数を指定してください")
         return
 
+    print(dividend)
+
     real_number, int_number = modf(dividend)
     int_number = int(int_number)
 
@@ -117,10 +123,9 @@ def radix_conversion_from_dec(dividend, base_number=2):
         lambda number_list: "".join(map(str, number_list[::-1])))
     int_str = template_method(int_list)
     real_str = template_method(real_list)
-    template = "{}".format(int_str)
-    if len(real_str) != 0:
-        template = "{}.{}".format(int_str, real_str)
-    print(template)
+    template = "{}".format(int_str) if len(real_str) == 0 else "{}.{}".format(
+        int_str, real_str)
+    print(template + linesep)
 
 
 def main():
@@ -138,10 +143,13 @@ def main():
     radix_conversion_from_dec(26.625, 16)
 
     print('# 2進数 →　10進数')
+    radix_conversion_to_dec('11010', 2)
     radix_conversion_to_dec('11010.101', 2)
     print('# 8進数 →　10進数')
+    radix_conversion_to_dec('32', 8)
     radix_conversion_to_dec('32.5', 8)
     print('# 16進数 →　10進数')
+    radix_conversion_to_dec('1A', 16)
     radix_conversion_to_dec('1A.A', 16)
 
 
