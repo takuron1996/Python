@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1. コンピュータと数 &#8212; math 1.0.0 ドキュメント</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="検索" href="../search.html" />
+    <link rel="prev" title="Pythonで学び直す高校数学" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1><span class="section-number">1. </span>コンピュータと数<a class="headerlink" href="#id1" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">1.1. </span>累乗<a class="headerlink" href="#id2" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 10の2乗</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">2</span>
+<span class="mi">100</span>
+
+<span class="c1"># 10の-2乗</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">10</span> <span class="o">**</span> <span class="o">-</span><span class="mi">2</span>
+<span class="mf">0.1</span>
+
+<span class="c1"># 10の0乗</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="mi">10</span> <span class="o">**</span> <span class="mi">0</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2><span class="section-number">1.2. </span>基数変換<a class="headerlink" href="#id3" title="このヘッドラインへのパーマリンク">¶</a></h2>
+<p>pythonの標準ライブラリ</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#10進数　→　2進数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">bin</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="s1">&#39;0b1010&#39;</span>
+
+<span class="c1"># 2進数　→　10進数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="nb">bin</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">10</span>
+
+<span class="c1">#10進数　→　8進数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">oct</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="s1">&#39;0o12&#39;</span>
+
+<span class="c1"># 8進数　→　10進数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="nb">oct</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="mi">8</span><span class="p">)</span>
+<span class="mi">10</span>
+
+<span class="c1">#10進数　→　16進数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">hex</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+<span class="s1">&#39;0x12&#39;</span>
+
+<span class="c1">#16進数　→　10進数</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">int</span><span class="p">(</span><span class="nb">hex</span><span class="p">(</span><span class="mi">18</span><span class="p">),</span> <span class="mi">16</span><span class="p">)</span>
+<span class="mi">18</span>
+</pre></div>
+</div>
+<p>自作（結果）</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># 10進数 →　2進数
+26
+26 / 2 = 13 ・・・ 0
+13 / 2 = 6 ・・・ 1
+6 / 2 = 3 ・・・ 0
+3 / 2 = 1 ・・・ 1
+1 / 2 = 0 ・・・ 1
+11010
+
+26.625
+26 / 2 = 13 ・・・ 0
+13 / 2 = 6 ・・・ 1
+6 / 2 = 3 ・・・ 0
+3 / 2 = 1 ・・・ 1
+1 / 2 = 0 ・・・ 1
+0.625 * 2 = 1.25
+0.25 * 2 = 0.5
+0.5 * 2 = 1.0
+11010.101
+
+# 10進数　→　8進数
+26
+26 / 8 = 3 ・・・ 2
+3 / 8 = 0 ・・・ 3
+32
+
+26.625
+26 / 8 = 3 ・・・ 2
+3 / 8 = 0 ・・・ 3
+0.625 * 8 = 5.0
+32.5
+
+# 10進数　→　16進数
+26
+26 / 16 = 1 ・・・ 10
+1 / 16 = 0 ・・・ 1
+1A
+
+26.625
+26 / 16 = 1 ・・・ 10
+1 / 16 = 0 ・・・ 1
+0.625 * 16 = 10.0
+1A.A
+
+# 2進数 →　10進数
+11010
+(1*2**4) + (1*2**3) + (0*2**2) + (1*2**1) + (0*2**0) = 26
+
+11010.101
+(1*2**4) + (1*2**3) + (0*2**2) + (1*2**1) + (0*2**0) + (1*2**-1) + (0*2**-2) + (1*2**-3) = 26.625
+
+# 8進数 →　10進数
+32
+(3*8**1) + (2*8**0) = 26
+
+32.5
+(3*8**1) + (2*8**0) + (5*8**-1) = 26.625
+
+# 16進数 →　10進数
+1A
+(1*16**1) + (10*16**0) = 26
+
+1A.A
+(1*16**1) + (10*16**0) + (10*16**-1) = 26.625
+</pre></div>
+</div>
+<p>python</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf_8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    基数変換の例題プログラム</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="n">__author__</span> <span class="o">=</span> <span class="s1">&#39;Taku Ikegami&#39;</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="s1">&#39;3.0.1&#39;</span>
+<span class="n">__date__</span> <span class="o">=</span> <span class="s1">&#39;2021/06/06 (Created: 2021/06/05)&#39;</span>
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">modf</span>
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">linesep</span>
+
+
+<span class="k">def</span> <span class="nf">radix_conversion_to_dec</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">base_number</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;n進数から10進数に変換（2から16進数まで）</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        target (str)): 基数変換する対象</span>
+<span class="sd">        base_number (int): 変換元の進数（指定がない場合は2進数、2から16進数）</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">pre_calculation</span><span class="p">(</span><span class="n">result_list</span><span class="p">,</span> <span class="n">formula_list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;計算準備</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;数字をアルファベットに変換</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+
+            <span class="k">if</span> <span class="nb">str</span><span class="o">.</span><span class="n">isdigit</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">target</span>
+
+            <span class="k">return</span> <span class="nb">ord</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">10</span>
+
+        <span class="k">def</span> <span class="nf">calculation</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">):</span>
+            <span class="sd">&quot;&quot;&quot;計算</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">real</span><span class="p">,</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">number</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">)):</span>
+                <span class="n">convert_number</span> <span class="o">=</span> <span class="n">convert</span><span class="p">(</span><span class="n">real</span><span class="p">)</span>
+                <span class="n">result_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="nb">int</span><span class="p">(</span><span class="n">convert_number</span><span class="p">)</span> <span class="o">*</span> <span class="n">base_number</span><span class="o">**</span><span class="nb">int</span><span class="p">(</span><span class="n">index</span><span class="p">))</span>
+                <span class="n">formula_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;(</span><span class="si">{}</span><span class="s1">*</span><span class="si">{}</span><span class="s1">**</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">convert_number</span><span class="p">,</span> <span class="n">base_number</span><span class="p">,</span> <span class="n">index</span><span class="p">))</span>
+            <span class="k">return</span>
+
+        <span class="k">return</span> <span class="n">calculation</span>
+
+    <span class="k">if</span> <span class="n">base_number</span> <span class="o">&gt;</span> <span class="mi">16</span> <span class="ow">or</span> <span class="n">base_number</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2から16進数を指定してください&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+
+    <span class="n">target_list</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+    <span class="n">int_number</span> <span class="o">=</span> <span class="n">target_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">real_number</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target_list</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">real_number</span> <span class="o">=</span> <span class="n">target_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">result_list</span><span class="p">,</span> <span class="n">formula_list</span> <span class="o">=</span> <span class="p">([],</span> <span class="p">[])</span>
+    <span class="n">calculation</span> <span class="o">=</span> <span class="n">pre_calculation</span><span class="p">(</span><span class="n">result_list</span><span class="p">,</span> <span class="n">formula_list</span><span class="p">)</span>
+    <span class="n">calculation</span><span class="p">(</span><span class="n">real_number</span><span class="p">,</span> <span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">real_number</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">calculation</span><span class="p">(</span><span class="n">int_number</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">int_number</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result_list</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39; + &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">formula_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">str</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">+</span>
+          <span class="n">linesep</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">radix_conversion_from_dec</span><span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">base_number</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;10進数からn進数に変換（2から16進数まで）</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dividend (float): 基数変換する対象</span>
+<span class="sd">        base_number (int): 変換先の進数（指定がない場合は2進数、2から16進数）</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;10以上の数字をアルファベットに変換</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">number</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">number</span>
+
+        <span class="k">return</span> <span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">number</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">int_calculation</span><span class="p">(</span><span class="n">dividend</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;整数部分を計算</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">dividend</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">quotient</span><span class="p">,</span> <span class="n">remainder</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">base_number</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> / </span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2"> ・・・ </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dividend</span><span class="p">,</span> <span class="n">base_number</span><span class="p">,</span> <span class="n">quotient</span><span class="p">,</span>
+                                               <span class="n">remainder</span><span class="p">))</span>
+            <span class="n">result_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="n">remainder</span><span class="p">))</span>
+            <span class="n">dividend</span> <span class="o">=</span> <span class="n">quotient</span>
+        <span class="k">return</span> <span class="n">result_list</span>
+
+    <span class="k">def</span> <span class="nf">real_calculation</span><span class="p">(</span><span class="n">real_number</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;小数部分を計算</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">real_number</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">real_number</span> <span class="o">*</span> <span class="n">base_number</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> * </span><span class="si">{}</span><span class="s2"> = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">real_number</span><span class="p">,</span> <span class="n">base_number</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+            <span class="n">result_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">convert</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">)))</span>
+            <span class="n">real_number</span> <span class="o">=</span> <span class="n">result</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">result_list</span>
+
+    <span class="k">if</span> <span class="n">base_number</span> <span class="o">&gt;</span> <span class="mi">16</span> <span class="ow">or</span> <span class="n">base_number</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2から16進数を指定してください&quot;</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">dividend</span><span class="p">)</span>
+
+    <span class="n">real_number</span><span class="p">,</span> <span class="n">int_number</span> <span class="o">=</span> <span class="n">modf</span><span class="p">(</span><span class="n">dividend</span><span class="p">)</span>
+    <span class="n">int_number</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">int_number</span><span class="p">)</span>
+
+    <span class="n">int_list</span> <span class="o">=</span> <span class="n">int_calculation</span><span class="p">(</span><span class="n">int_number</span><span class="p">)</span>
+    <span class="n">real_list</span> <span class="o">=</span> <span class="n">real_calculation</span><span class="p">(</span><span class="n">real_number</span><span class="p">)</span>
+
+    <span class="n">template_method</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">number_list</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">number_list</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span>
+    <span class="n">int_str</span> <span class="o">=</span> <span class="n">template_method</span><span class="p">(</span><span class="n">int_list</span><span class="p">)</span>
+    <span class="n">real_str</span> <span class="o">=</span> <span class="n">template_method</span><span class="p">(</span><span class="n">real_list</span><span class="p">)</span>
+    <span class="n">template</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">int_str</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">real_str</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">.</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+        <span class="n">int_str</span><span class="p">,</span> <span class="n">real_str</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">template</span> <span class="o">+</span> <span class="n">linesep</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        例題プログラム</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# 10進数 →　2進数&#39;</span><span class="p">)</span>
+    <span class="n">radix_conversion_from_dec</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">radix_conversion_from_dec</span><span class="p">(</span><span class="mf">26.625</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# 10進数　→　8進数&#39;</span><span class="p">)</span>
+    <span class="n">radix_conversion_from_dec</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">radix_conversion_from_dec</span><span class="p">(</span><span class="mf">26.625</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# 10進数　→　16進数&#39;</span><span class="p">)</span>
+    <span class="n">radix_conversion_from_dec</span><span class="p">(</span><span class="mi">26</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="n">radix_conversion_from_dec</span><span class="p">(</span><span class="mf">26.625</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# 2進数 →　10進数&#39;</span><span class="p">)</span>
+    <span class="n">radix_conversion_to_dec</span><span class="p">(</span><span class="s1">&#39;11010&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">radix_conversion_to_dec</span><span class="p">(</span><span class="s1">&#39;11010.101&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# 8進数 →　10進数&#39;</span><span class="p">)</span>
+    <span class="n">radix_conversion_to_dec</span><span class="p">(</span><span class="s1">&#39;32&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="n">radix_conversion_to_dec</span><span class="p">(</span><span class="s1">&#39;32.5&#39;</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;# 16進数 →　10進数&#39;</span><span class="p">)</span>
+    <span class="n">radix_conversion_to_dec</span><span class="p">(</span><span class="s1">&#39;1A&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="n">radix_conversion_to_dec</span><span class="p">(</span><span class="s1">&#39;1A.A&#39;</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">math</a></h1>
+
+
+
+
+
+
+
+
+<h3>ナビゲーション</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. コンピュータと数</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.1. 累乗</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.2. 基数変換</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="前の章へ">Pythonで学び直す高校数学</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Taku Ikegami.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/first/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
