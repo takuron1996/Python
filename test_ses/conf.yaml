@@ -1,0 +1,8 @@
+SES:
+  PROFILE: "test-user"
+  SENDER: "teachfarst984@gmail.com"
+  RECIPIENT: "takuron1996@gmail.com"
+  AWS_REGION: "ap-northeast-1"
+  SUBJECT: "SESのテストメール"
+  CHARSET: "UTF-8"
+  TEMPLATE: "mail.template"
