@@ -8,7 +8,7 @@ __version__ = "1.0.1"
 __date__ = "2022/11/12(Created: 2022/11/12)"
 
 
-import os
+from pathlib import Path, PurePath
 
 import yaml
 from botocore.exceptions import ClientError
@@ -30,7 +30,7 @@ def read_yaml(*args):
         yamlの設定ファイルを辞書形式で返す
     """
     with open(
-        os.path.join(os.getcwd(), *args), "r", encoding="utf-8"
+        PurePath.joinpath(Path.cwd(), *args), "r", encoding="utf-8"
     ) as yaml_file:
         return yaml.safe_load(yaml_file)
 
