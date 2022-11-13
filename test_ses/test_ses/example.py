@@ -82,8 +82,7 @@ def send_mail():
     except ClientError as error:
         print(error.response["Error"]["Message"])
     else:
-        print("Email sent! Message ID:")
-        print(response["MessageId"])
+        print("Email sent! Message ID:", response["MessageId"])
 
 
 if __name__ == "__main__":
